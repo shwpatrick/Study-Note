@@ -8,6 +8,8 @@
 [列固定資料流實作概念](#列固定資料流實作概念)  
 [列固定資料流的硬體實務](#列固定資料流的硬體實務)  
 [列固定資料流與CNN各層的交互](#列固定資料流與CNN各層的交互)  
+[Eyeriss架構對於資料流傳輸的特化設計](#Eyeriss架構對於資料流傳輸的特化設計)
+[資料傳輸引起延遲與處理](#資料傳輸引起延遲與處理)
 
 # 資料與圖源
 
@@ -186,16 +188,25 @@ RS 資料流是為了解決 CONV 層中的高維度卷積所設計，它也**能
     - 將每個 PE 中的 MAC（乘加運算）替換為 MAX（最大值比較），即可處理池化層。
     - 假設 N=M=C=1N = M = C = 1N=M=C=1，分別處理每一個 fmap 平面。
 
-##  Eyeriss 架構對於資料流傳輸的特化設計
+#  Eyeriss架構對於資料流傳輸的特化設計
 
 資料流是透過**三個不同的 NoC（網路通訊結構）**來處理三種不同資料：  
 - 全域廣播 NoC（Global multicast NoC）：用於 ifmap 與濾波器的傳送  
 - 本地 PE 對 PE NoC（Local PE-to-PE NoC）：用於 psum 的傳遞與累加
+
+![image](https://github.com/user-attachments/assets/fdb677bc-5a8f-484a-8a46-dd7fc6456ce9)
 
 進一步節能：活用稀疏性（sparsity）-> CNN經過剪枝（pruning）或稀疏訓練後，很多權重跟輸出的值都是0 
 
 - 僅對非零值進行資料讀取與 MAC 運算
 - 對資料進行壓縮，以減少資料傳輸成本
 
+# 資料傳輸引起延遲與處理
 
-![image](https://github.com/user-attachments/assets/fdb677bc-5a8f-484a-8a46-dd7fc6456ce9)
+資料傳輸也會引起延遲（特別是儲存頻寬受限時），但這類影響可透過以下常見技術緩解：
+
+- 預取（Prefetching）
+- 雙緩衝（Double Buffering）
+- 快取（Caching）
+- 管線化（Pipelining）
+
