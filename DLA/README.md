@@ -41,3 +41,11 @@ CNN 每層對於這些運算的實際需求與考量不同
 	- filter reuse : CONV, FC 層都有
 	- ifmap reuse: CONV, FC 層都有
 - Mapping: 每層的大小不同，所以需要考慮到實際運算元跟層的映射關係
+
+# CNN 與 ISP 的不同
+
+雖然ISP也有考慮卷積優化，但不能照搬給CNN，因為  
+
+- CNN CONV 是 4D (ISP 是 2D)  
+- CNN的Filter 不固定 (訓練計算得來)
+- 
