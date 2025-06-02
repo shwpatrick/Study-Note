@@ -52,7 +52,7 @@ CNN 每層對於這些運算的實際需求與考量不同
 	- 資料重用（data reuse）方式來緩解  
  		- 卷積重用（convolutional reuse）：CONV層單獨  
    		- 濾波器重用（filter reuse）：CONV, FC層  
-     		- ifmap 重用（ifmap reuse）：CONV, FC層  
+     		- ifmap重用（ifmap reuse）：CONV, FC層  
 - 中間資料儲存壓力問題：平行 MAC 運算同時產生大量「部分和」（partial sums, psums），若無法立即進行累加，就需要額外的儲存空間與記憶體 R/W 能量。  
 	- 使用 操作排程（operation scheduling）來處理
  	- 無法同時最大化輸入重用與立即累加 psum，因為來自相同濾波器或 ifmap 價值的 psum 無法直接合併。  
