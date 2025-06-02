@@ -2,7 +2,7 @@
 
 
 - 參考 [資料與圖源](#資料與圖源)
-- 核心 [核心概念 - DLA加速](#核心概念-DLA加速)
+- 核心 [DLA探討內容](#核心概念-DLA探討內容)
 - 概念 [空間架構(SA)概念](#空間架構(SA)概念)
 - 問題 [CNN層的運算需求](#CNN層的運算需求)
 - 解決 [CNN的問題考量與解決](#CNN的問題考量與解決)
@@ -19,7 +19,7 @@
 
 [Paper : Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks](https://eems.mit.edu/wp-content/uploads/2016/04/eyeriss_isca_2016.pdf)  
 
-# 核心概念 - DLA加速
+# 核心概念 - DLA探討內容
 
 加速包刮了更小的成本與更快的運算兩個目標
 
