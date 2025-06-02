@@ -18,6 +18,16 @@
 
 [Paper : Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks](https://eems.mit.edu/wp-content/uploads/2016/04/eyeriss_isca_2016.pdf)  
 
+# 核心概念 - DLA加速
+
+加速包刮了更小的成本與更快的運算兩個目標
+
+而成本的考量可以當分成兩個部位
+- 計算時的資料傳輸 - 如果資料一直都需要大幅度傳輸很耗能 -> 將可以重複使用的資料減少移動
+- 中間產物佔據空間 - 計算的中間產物占據記憶體，如果只顧重用而導致所有計算都算到一半很占據資源 -> 引入排程手法
+
+
+
 # 空間架構(SA)概念
 
 AI有大量的運算，所以透過較佳的資料搬運與儲存策略可以減少大量成本  
