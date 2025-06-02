@@ -1,5 +1,6 @@
 # 概覽
 
+[資料與圖源](#資料與圖源)
 [空間架構(SA)概念](#空間架構(SA)概念)  
 [CNN層的運算需求](#CNN層的運算需求)  
 [CNN的問題考量與解決](#CNN的問題考量與解決)  
@@ -7,6 +8,10 @@
 [列固定資料流實作概念](#列固定資料流實作概念)  
 [列固定資料流的硬體實務](#列固定資料流的硬體實務)  
 [列固定資料流與CNN各層的交互](#列固定資料流與CNN各層的交互)  
+
+# 資料與圖源
+
+[Paper : Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks](https://eems.mit.edu/wp-content/uploads/2016/04/eyeriss_isca_2016.pdf  
 
 # 空間架構(SA)概念
 
@@ -139,6 +144,8 @@ CONV／FC 層可能擁有多種不同的結構 -> 硬體架構不能只支援特
 		- 一個處理批次**通常無法處理整個 CONV 層的所有 PE set**
 		- 此階段中，**全域緩衝區（global buffer）用來儲存跨批次重用的輸入資料與 psum**
 		
+![image](https://github.com/user-attachments/assets/fdb677bc-5a8f-484a-8a46-dd7fc6456ce9)
+
 
 # 列固定資料流的硬體實務
 
