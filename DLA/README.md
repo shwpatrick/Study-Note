@@ -11,7 +11,7 @@
 
 # 資料與圖源
 
-[Paper : Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks](https://eems.mit.edu/wp-content/uploads/2016/04/eyeriss_isca_2016.pdf  
+[Paper : Eyeriss: A Spatial Architecture for Energy-Efficient Dataflow for Convolutional Neural Networks](https://eems.mit.edu/wp-content/uploads/2016/04/eyeriss_isca_2016.pdf)  
 
 # 空間架構(SA)概念
 
