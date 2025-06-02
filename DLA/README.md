@@ -129,6 +129,9 @@ CONV／FC 層可能擁有多種不同的結構 -> 硬體架構不能只支援特
 
 # 列固定資料流實作概念
 
+![image](https://github.com/user-attachments/assets/739cb939-6f6e-4d94-92da-8aab6ba21140)
+
+
 - 採用了**兩階段映射方式**：
 	1. **邏輯映射（Logical Mapping）**
 		- 將每個 **1D 卷積原語**對應到一個**邏輯 PE（logical PE）**上
@@ -144,9 +147,6 @@ CONV／FC 層可能擁有多種不同的結構 -> 硬體架構不能只支援特
 		- 一個處理批次**通常無法處理整個 CONV 層的所有 PE set**
 		- 此階段中，**全域緩衝區（global buffer）用來儲存跨批次重用的輸入資料與 psum**
 		
-![image](https://github.com/user-attachments/assets/fdb677bc-5a8f-484a-8a46-dd7fc6456ce9)
-
-
 # 列固定資料流的硬體實務
 
 - **RF（暫存器檔案）**：經過第一階段折疊後，在一個 PE 中執行多個 1D 卷積原語時，RF 可用來實現各種資料重用：
@@ -186,3 +186,16 @@ RS 資料流是為了解決 CONV 層中的高維度卷積所設計，它也**能
     - 將每個 PE 中的 MAC（乘加運算）替換為 MAX（最大值比較），即可處理池化層。
     - 假設 N=M=C=1N = M = C = 1N=M=C=1，分別處理每一個 fmap 平面。
 
+##  Eyeriss 架構對於資料流傳輸的特化設計
+
+資料流是透過**三個不同的 NoC（網路通訊結構）**來處理三種不同資料：  
+- 全域廣播 NoC（Global multicast NoC）：用於 ifmap 與濾波器的傳送  
+- 本地 PE 對 PE NoC（Local PE-to-PE NoC）：用於 psum 的傳遞與累加
+
+進一步節能：活用稀疏性（sparsity）-> CNN經過剪枝（pruning）或稀疏訓練後，很多權重跟輸出的值都是0 
+
+- 僅對非零值進行資料讀取與 MAC 運算
+- 對資料進行壓縮，以減少資料傳輸成本
+
+
+![image](https://github.com/user-attachments/assets/fdb677bc-5a8f-484a-8a46-dd7fc6456ce9)
